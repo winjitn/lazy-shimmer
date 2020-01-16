@@ -8,7 +8,7 @@ class App extends React.Component {
 
   componentDidMount() {
     let option = {
-      threshold: [0, 0.25, 0.5, 0.75, 1]
+      threshold: [0.25, 0.5, 0.75, 1]
     };
     var io = new IntersectionObserver(entries => {
       this.setState({
