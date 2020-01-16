@@ -11,12 +11,14 @@ class App extends React.Component {
       threshold: [0.25, 0.5, 0.75, 1]
     };
     var io = new IntersectionObserver(entries => {
-      this.setState({
-        intersection: entries[0].intersectionRatio.toFixed(2)
-      });
-      if (this.state.lazy === false) {
-        this.setState({ lazy: true });
-        setTimeout(() => this.setState({ render: true }), 5e3);
+      if (entries[0].isIntersecting) {
+        this.setState({
+          intersection: entries[0].intersectionRatio.toFixed(2)
+        });
+        if (this.state.lazy === false) {
+          this.setState({ lazy: true });
+          setTimeout(() => this.setState({ render: true }), 5e3);
+        }
       }
     }, option);
     io.observe(document.querySelector(".ui.card"));
